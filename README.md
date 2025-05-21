@@ -2,22 +2,7 @@
 
 Este proyecto permite gestionar citas médicas donde **pacientes** pueden agendar citas, **médicos** pueden ver sus citas asignadas y **administradores** pueden gestionar usuarios y roles. Es un proyecto final para el curso de Ciencias de Computadoras.
 
-A continuación, puedes incluir capturas de las interfaces principales del sistema:
 
-<figure class="image">
-   <img src="images/login.png" alt="Login Form">
-   <figcaption>Pantalla de Inicio de Sesión</figcaption>
-</figure>
-
-<figure class="image">
-   <img src="images/dashboard.png" alt="Dashboard">
-   <figcaption>Panel Principal / Dashboard</figcaption>
-</figure>
-
-<figure class="image">
-   <img src="images/citas.png" alt="Gestión de Citas">
-   <figcaption>Gestión de Citas</figcaption>
-</figure>
 
 ---
 
