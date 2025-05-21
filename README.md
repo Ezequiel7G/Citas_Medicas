@@ -1,6 +1,6 @@
 # 🩺 Gestión de Consultas Médicas - Flask + MySQL
 
-Este proyecto permite gestionar citas médicas donde **pacientes** pueden agendar citas, **médicos** pueden ver sus citas asignadas y **administradores** pueden gestionar usuarios y roles. Es un proyecto final para el curso de Ciencias de Computadoras.
+Este proyecto permite gestionar citas médicas donde **pacientes** pueden agendar citas, **médicos** pueden ver sus citas asignadas y **administradores** pueden gestionar usuarios y roles. Es un proyecto final para el curso de COMP2052.
 
 
 
