@@ -1,0 +1,6 @@
+### Obtener una cita específica
+GET http://localhost:5000/api/citas/1
+Authorization: Bearer {{token}}
+
+### Variables
+@token = tu-token-de-autenticacion 

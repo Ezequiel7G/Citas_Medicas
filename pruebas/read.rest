@@ -1,0 +1,6 @@
+### Obtener todas las citas
+GET http://localhost:5000/api/citas
+Authorization: Bearer {{token}}
+
+### Variables
+@token = tu-token-de-autenticacion 

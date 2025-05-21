@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2>Bienvenido, {{ current_user.nombre }} {{ current_user.apellido }}</h2>
+        <p class="text-muted">Rol: {{ current_user.rol|title }}</p>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Mis Citas</h4>
+                {% if current_user.rol == 'paciente' %}
+                <a href="{{ url_for('main.nueva_cita') }}" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> Nueva Cita
+                </a>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                {% if citas %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Fecha y Hora</th>
+                                {% if current_user.rol == 'paciente' %}
+                                <th>Doctor</th>
+                                {% else %}
+                                <th>Paciente</th>
+                                {% endif %}
+                                <th>Estado</th>
+                                <th>Motivo</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cita in citas %}
+                            <tr>
+                                <td>{{ cita.fecha_hora.strftime('%d/%m/%Y %H:%M') }}</td>
+                                {% if current_user.rol == 'paciente' %}
+                                <td>{{ cita.doctor.user.nombre }} {{ cita.doctor.user.apellido }}</td>
+                                {% else %}
+                                <td>{{ cita.paciente.user.nombre }} {{ cita.paciente.user.apellido }}</td>
+                                {% endif %}
+                                <td>
+                                    <span class="badge {% if cita.estado == 'pendiente' %}bg-warning
+                                                      {% elif cita.estado == 'confirmada' %}bg-success
+                                                      {% elif cita.estado == 'cancelada' %}bg-danger
+                                                      {% else %}bg-info{% endif %}">
+                                        {{ cita.estado|title }}
+                                    </span>
+                                </td>
+                                <td>{{ cita.motivo }}</td>
+                                <td>
+                                    {% if cita.estado == 'pendiente' %}
+                                    <a href="{{ url_for('main.cancelar_cita', id=cita.id) }}" 
+                                       class="btn btn-sm btn-danger"
+                                       onclick="return confirm('¿Estás seguro de que deseas cancelar esta cita?')">
+                                        <i class="bi bi-x-circle"></i> Cancelar
+                                    </a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="alert alert-info">
+                    No tienes citas programadas.
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

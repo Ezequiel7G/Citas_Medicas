@@ -1,0 +1,14 @@
+### Actualizar una cita
+PUT http://localhost:5000/api/citas/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "fecha_hora": "2024-03-21T11:00:00",
+    "motivo": "Consulta de seguimiento",
+    "estado": "confirmada",
+    "notas": "Actualización de la consulta"
+}
+
+### Variables
+@token = tu-token-de-autenticacion 

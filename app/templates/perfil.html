@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %}Mi Perfil{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">Mi Perfil</h4>
+            </div>
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <h5>Información Personal</h5>
+                        <p><strong>Nombre:</strong> {{ current_user.nombre }}</p>
+                        <p><strong>Apellido:</strong> {{ current_user.apellido }}</p>
+                        <p><strong>Email:</strong> {{ current_user.email }}</p>
+                        <p><strong>Rol:</strong> {{ current_user.rol|capitalize }}</p>
+                    </div>
+                </div>
+
+                {% if form %}
+                <form method="POST" action="{{ url_for('main.perfil') }}">
+                    {{ form.hidden_tag() }}
+                    {% if current_user.rol == 'paciente' %}
+                    <div class="mb-3">
+                        {{ form.fecha_nacimiento.label(class="form-label") }}
+                        {{ form.fecha_nacimiento(class="form-control", type="date") }}
+                        {% for error in form.fecha_nacimiento.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.telefono.label(class="form-label") }}
+                        {{ form.telefono(class="form-control") }}
+                        {% for error in form.telefono.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.direccion.label(class="form-label") }}
+                        {{ form.direccion(class="form-control") }}
+                        {% for error in form.direccion.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% elif current_user.rol == 'doctor' %}
+                    <div class="mb-3">
+                        {{ form.especialidad.label(class="form-label") }}
+                        {{ form.especialidad(class="form-control") }}
+                        {% for error in form.especialidad.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <div class="d-grid">
+                        {{ form.submit(class="btn btn-primary") }}
+                    </div>
+                </form>
+                {% else %}
+                <p class="text-center">No hay formulario para este perfil.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

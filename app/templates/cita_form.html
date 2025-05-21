@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}Agendar Nueva Cita{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">Agendar Nueva Cita</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('main.nueva_cita') }}">
+                    {{ form.hidden_tag() }}
+                    <div class="mb-3">
+                        {{ form.doctor.label(class="form-label") }}
+                        {{ form.doctor(class="form-select") }}
+                        {% for error in form.doctor.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.fecha_hora.label(class="form-label") }}
+                        {{ form.fecha_hora(class="form-control", type="datetime-local") }}
+                        {% for error in form.fecha_hora.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.motivo.label(class="form-label") }}
+                        {{ form.motivo(class="form-control") }}
+                        {% for error in form.motivo.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="d-grid gap-2">
+                        {{ form.submit(class="btn btn-primary btn-block") }}
+                        <a href="{{ url_for('main.dashboard') }}" class="btn btn-secondary btn-block">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

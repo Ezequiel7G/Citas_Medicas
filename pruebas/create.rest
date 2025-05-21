@@ -1,0 +1,15 @@
+### Crear una nueva cita
+POST http://localhost:5000/api/citas
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "doctor_id": 1,
+    "paciente_id": 2,
+    "fecha_hora": "2024-03-20T10:00:00",
+    "motivo": "Consulta de rutina",
+    "notas": "Primera consulta del paciente"
+}
+
+### Variables
+@token = tu-token-de-autenticacion 
